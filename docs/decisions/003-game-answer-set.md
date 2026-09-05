@@ -1,71 +1,79 @@
-WHOISIT V1 ANSWER SET
+# WHOISIT V1 ANSWER SET
 
-YES
+## Answer Options
+
+### YES
+
 The user believes the proposition is definitely or strongly true.
 
-PROBABLY
-The user believes the proposition is more likely true than false,
-but lacks sufficient certainty for "Yes".
+### PROBABLY
 
-DON'T KNOW
+The user believes the proposition is more likely true than false, but lacks sufficient certainty for **Yes**.
+
+### DON'T KNOW
+
 The user cannot determine whether the proposition is true or false.
-This represents missing information, not a negative answer.
 
-PROBABLY NOT
-The user believes the proposition is more likely false than true,
-but lacks sufficient certainty for "No".
+This represents **missing information**, not a negative answer.
 
-NO
+### PROBABLY NOT
+
+The user believes the proposition is more likely false than true, but lacks sufficient certainty for **No**.
+
+### NO
+
 The user believes the proposition is definitely or strongly false.
 
+---
 
-Skip Policy
-------------
+## Skip Policy
 
-WhoIsIt V1 does not allow users to skip questions.
+WhoIsIt V1 does **not** allow users to skip questions.
 
 Every presented question must be answered using exactly one of:
+
 - Yes
 - Probably
 - Don't know
 - Probably not
 - No
 
-"Don't know" represents insufficient knowledge about the question.
-There is no separate Skip state in V1.
+**Don't know** represents insufficient knowledge about the question.
 
+There is **no separate Skip state** in V1.
 
+---
 
-Maximum Questions: 25
+## Maximum Questions
 
-WhoIsIt may ask at most 25 questions in a single game.
+**Maximum Questions: 25**
 
-After the 25th answered question, the engine must stop
-question selection and make a guess using the highest-ranked
-remaining candidate.
+WhoIsIt may ask at most **25 questions** in a single game.
 
-The 25-question limit is a hard upper bound.
+After the 25th answered question, the engine must:
 
-Reaching the limit does not imply that the engine is confident
-in its guess.
+1. Stop question selection.
+2. Make a guess using the **highest-ranked remaining candidate**.
 
+The **25-question limit is a hard upper bound**.
 
+Reaching the limit does **not** imply that the engine is confident in its guess.
 
+---
 
-EARLY GUESS POLICY
+## Early Guess Policy
 
-WhoIsIt may make an early guess only when:
+WhoIsIt may make an **early guess** only when **all three** conditions are satisfied:
 
-1. At least 5 questions have been answered.
-2. The highest-ranked candidate has a probability of at least 85%.
-3. The highest-ranked candidate leads the second-ranked candidate
-   by at least 20 percentage points.
+1. At least **5 questions** have been answered.
+2. The highest-ranked candidate has a probability of at least **85%**.
+3. The highest-ranked candidate leads the second-ranked candidate by at least **20 percentage points**.
 
 All three conditions must be satisfied.
 
-If any condition is not satisfied, the engine continues asking
-questions until either the early-guess conditions are met or the
-25-question maximum is reached.
+If **any condition is not satisfied**, the engine continues asking questions until either:
 
-If the 25-question limit is reached, the engine makes a forced
-guess regardless of confidence.
+- The early-guess conditions are met, or
+- The **25-question maximum** is reached.
+
+If the 25-question limit is reached, the engine makes a **forced guess regardless of confidence**.
