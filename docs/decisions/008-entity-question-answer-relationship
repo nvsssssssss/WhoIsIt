@@ -1,0 +1,76 @@
+# Entity–Question Answer Relationship
+
+## Status
+
+Draft
+
+## Decision
+
+WhoIsIt will use a separate `character_answers` table to represent the relationship between a character and a question.
+
+Each record represents the answer associated with one character and one question.
+
+### Relationship
+
+A character can have answers to many questions, and a question can have answers for many characters.
+
+Therefore, the relationship is many-to-many and is represented through `character_answers`.
+
+```text
+characters
+    │
+    │ character_id
+    ↓
+character_answers
+    ↑
+    │ question_id
+    │
+questions
+```
+
+## Proposed `character_answers` Table
+
+| Column | Purpose |
+|---|---|
+| `id` | Unique identifier for the answer record |
+| `character_id` | Character this answer belongs to |
+| `question_id` | Question being answered |
+| `answer` | Answer associated with the character and question |
+| `probability` | Numerical probability associated with the answer |
+| `confidence` | Confidence in the stored knowledge |
+| `created_at` | When the record was created |
+| `updated_at` | When the record was last updated |
+
+## Answer States
+
+A user's response to a question can be one of five qualitative states:
+
+| Answer | Meaning |
+|---|---|
+| `true` | Yes |
+| `false` | No |
+| `probably` | Likely true |
+| `probably_not` | Likely false |
+| `unknown` | Don't know |
+
+## Important Distinction
+
+`answer` and `probability` are different concepts.
+
+For example:
+
+```text
+answer      = probably
+probability = 0.80
+confidence  = 0.95
+```
+
+- **Answer** → what was answered.
+- **Probability** → how likely the answer is.
+- **Confidence** → how confident the system is in the stored knowledge.
+
+## Current Scope
+
+This decision focuses only on the Entity–Question answer relationship.
+
+The exact database representation of the five answer states still needs to be finalized.
