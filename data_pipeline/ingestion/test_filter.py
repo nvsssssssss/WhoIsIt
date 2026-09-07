@@ -8,8 +8,26 @@ def test_filter_fictional_entities():
         {"name": "Unknown", "id": "Q3"},
     ]
 
-    result = filter_fictional_entities(entities)
+    accepted, rejected = filter_fictional_entities(entities)
 
-    assert result == [
+    assert accepted == [
         {"name": "Batman", "id": "Q1", "fictional": True},
+    ]
+
+    assert rejected == [
+        {
+            "entity": {
+                "name": "Albert Einstein",
+                "id": "Q2",
+                "fictional": False,
+            },
+            "reason": "not_fictional",
+        },
+        {
+            "entity": {
+                "name": "Unknown",
+                "id": "Q3",
+            },
+            "reason": "fictional_status_missing",
+        },
     ]
